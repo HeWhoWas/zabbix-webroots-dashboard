@@ -8,7 +8,7 @@
   # Place hosts into environments
   $envs = array();
   foreach($hosts as $host) {
-    $envs[substr($host->name,-6,3)][$host->hostid] = array('hostid' => $host->hostid, 'name' => $host->name, 'host' => $host->host);
+    $envs[substr($host->name,3,1)][$host->hostid] = array('hostid' => $host->hostid, 'name' => $host->name, 'host' => $host->host);
   }
 
   # Fetch standard items
@@ -78,7 +78,7 @@
     <th>Links</th>
   </tr>
 <?php
-  $env_abbr_list = array('prd', 'stg', 'tst', 'dev', 'adm');
+  $env_abbr_list = array('p', 's', 't', 'd', 'a'); //Production, Staging, Testing, Development, Admin
   $prev_env_abbr = "";
   # Explicit order in which we want to display envs
   foreach($env_abbr_list as $env_abbr) {
@@ -86,10 +86,10 @@
       $hosts = $envs[$env_abbr];
 
       switch($env_abbr) {
-        case "prd": $label = "danger";  $env_name = "production";  break;
-        case "stg": $label = "warning"; $env_name = "staging";     break;
-        case "tst": $label = "info";    $env_name = "testing";     break;
-        case "dev": $label = "success"; $env_name = "development"; break;
+        case "p": $label = "danger";  $env_name = "production";  break;
+        case "s": $label = "warning"; $env_name = "staging";     break;
+        case "t": $label = "info";    $env_name = "testing";     break;
+        case "d": $label = "success"; $env_name = "development"; break;
         default: break;
       }
     } else {
